@@ -1,18 +1,19 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import SvgIcon from './SvgIcon';
 
-export const Icon = (props) => {
-    const { style, className, icon, size, ...others} = props; //eslint-disable-line
+export const Icon = React.forwardRef(({ style, className, icon, size, ...others }, ref) => {
 
     return (
-        <div {...others} style={{display: 'inline-block',...style}} className={className}>
+        <div {...others}
+             style={{display: 'inline-block',...style}}
+             className={className}
+             ref={ref}>
             <SvgIcon size={props.size} icon={props.icon} title={props.title} />
         </div>
     );
-};
+});
 
 export const withBaseIcon = (defaultProps) => props => {
     const propsToUse = {...defaultProps};
